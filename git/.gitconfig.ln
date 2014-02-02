@@ -1,0 +1,17 @@
+[user]
+  name = Carlos Bonetti
+  email = carlosb_bc@hotmail.com
+
+[core]
+  editor = subl
+
+[color]
+  ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+
+[alias]
+  # Taken from https://coderwall.com/p/euwpig (by Filipe Kiss)
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
