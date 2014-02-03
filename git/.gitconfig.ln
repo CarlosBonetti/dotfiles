@@ -2,9 +2,6 @@
   name = Carlos Bonetti
   email = carlosb_bc@hotmail.com
 
-[core]
-  editor = subl
-
 [color]
   ui = auto
   branch = auto
