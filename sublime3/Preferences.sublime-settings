@@ -1,0 +1,7 @@
+{
+	"ensure_newline_at_eof_on_save": true,
+	"highlight_modified_tabs": true,
+	"tab_size": 2,
+  "trim_trailing_white_space_on_save": true,
+	"word_wrap": true
+}
