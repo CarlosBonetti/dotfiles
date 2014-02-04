@@ -39,6 +39,21 @@ link() {
     return
   fi
 
+  dirname=`dirname "$dest" -z`
+  if [ ! -d "$dirname" ]; then
+    warning "Directory $dirname does not exist"
+    ask "What do you want to do? [s]kip, [c]reate dir"
+    read -n 1 action
+
+    if [ "$action" == "c" ]; then
+      mkdir -p "$dirname"
+      success "Directory created: $dirname"
+    else
+      success "Skipped $src"
+      return
+    fi
+  fi
+
   if [ -f "$dest" ] || [ -d "$dest" ]; then
     if [ "$OVERWRITE_ALL" == "false" ] && [ "$SKIP_ALL" == "false" ]; then
       warning "File already exists: ${dest}"
