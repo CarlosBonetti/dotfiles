@@ -29,12 +29,17 @@ fail() {
 #   $1 -> source, $2 -> destiny
 #   Paths must be absolute
 link() {
-  src=$1
+  src=`readlink -f "$1"`
   dest=$2
   skip=false
   overwrite=false
 
-  if [ -f $dest ] || [ -d $dest ]; then
+  if [ ! -f "$src" ]; then
+    warning "(skipped) Not a file: ${src}"
+    return
+  fi
+
+  if [ -f "$dest" ] || [ -d "$dest" ]; then
     if [ "$OVERWRITE_ALL" == "false" ] && [ "$SKIP_ALL" == "false" ]; then
       warning "File already exists: ${dest}"
       ask "What do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all:"
@@ -55,17 +60,17 @@ link() {
     fi
 
     if [ "$overwrite" == "true" ] || [ "$OVERWRITE_ALL" == "true" ]; then
-      rm -rf $dest
+      rm -rf "$dest"
     fi
 
     if [ "$skip" == "false" ] && [ "$SKIP_ALL" == "false" ]; then
-      ln -s $src $dest
+      ln -s "$src" "$dest" || { fail "Something went wrong"; exit; }
       success "(overwrite) Created symbolic link ${dest} -> ${src}"
     else
       success "Skipped $src"
     fi
   else
-    ln -s $src $dest
+    ln -s "$src" "$dest" || { fail "Something went wrong"; exit; }
     success "Created symbolic link ${dest} -> ${src}"
   fi
 }
