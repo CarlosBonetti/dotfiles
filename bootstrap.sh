@@ -4,6 +4,9 @@
 
 DOTFILES_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+OVERWRITE_ALL=false
+SKIP_ALL=false
+
 success() {
   printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
@@ -22,60 +25,62 @@ fail() {
   exit
 }
 
+# Creates a symbolic link between $1 and $2, asking for what to do if destiny already exists
+#   $1 -> source, $2 -> destiny
+#   Paths must be absolute
+link() {
+  src=$1
+  dest=$2
+  skip=false
+  overwrite=false
+
+  if [ -f $dest ] || [ -d $dest ]; then
+    if [ "$OVERWRITE_ALL" == "false" ] && [ "$SKIP_ALL" == "false" ]; then
+      warning "File already exists: ${dest}"
+      ask "What do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all:"
+      read -n 1 action
+
+      case "$action" in
+        o )
+          overwrite=true;;
+        O )
+          OVERWRITE_ALL=true;;
+        s )
+          skip=true;;
+        S )
+          SKIP_ALL=true;;
+        * )
+          skip=true;;
+      esac
+    fi
+
+    if [ "$overwrite" == "true" ] || [ "$OVERWRITE_ALL" == "true" ]; then
+      rm -rf $dest
+    fi
+
+    if [ "$skip" == "false" ] && [ "$SKIP_ALL" == "false" ]; then
+      ln -s $src $dest
+      success "(overwrite) Created symbolic link ${dest} -> ${src}"
+    else
+      success "Skipped $src"
+    fi
+  else
+    ln -s $src $dest
+    success "Created symbolic link ${dest} -> ${src}"
+  fi
+}
+
 create_symlinks() {
   echo 'Creating symbolic links...'
 
   overwrite_all=false
   skip_all=false
 
-  for source in `find $DOTFILES_ROOT -name *.ln`
-  do
+  for source in `find $DOTFILES_ROOT -name *.ln`; do
     basename=`basename ${source} .ln`
     dest="$HOME/${basename}"
 
-    overwrite=false
-    skip=false
-
-    if [ -f $dest ] || [ -d $dest ]
-    then
-
-      if [ "$overwrite_all" == "false" ] && [ "$skip_all" == "false" ]
-      then
-        warning "File already exists: ${dest}"
-        ask "What do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all:"
-        read -n 1 action
-
-        case "$action" in
-          o )
-            overwrite=true;;
-          O )
-            overwrite_all=true;;
-          s )
-            skip=true;;
-          S )
-            skip_all=true;;
-          * )
-            skip=true;;
-        esac
-      fi
-
-      if [ "$overwrite" == "true" ] || [ "$overwrite_all" == "true" ]
-      then
-        rm -rf $dest
-      fi
-
-      if [ "$skip" == "false" ] && [ "$skip_all" == "false" ]
-      then
-        ln -s $source $dest
-        success "(overwrite) Created symbolic link ${dest} -> ${source}"
-      else
-        success "Skipped $source"
-      fi
-
-    else
-      ln -s $source $dest
-      success "Created symbolic link ${dest} -> ${source}"
-    fi
+    link $source $dest
   done
 }
 
