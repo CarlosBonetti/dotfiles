@@ -89,4 +89,21 @@ create_symlinks() {
   done
 }
 
+# Executes every *.setup file in the dotfiles structure.
+#   The current path is changed to the .setup path that is being executed
+run_setups() {
+  echo 'Running setup files...'
+
+  for setup_file in `find $DOTFILES_ROOT -name *.setup`; do
+    cd `dirname $setup_file`
+    success "Running: ${setup_file}"
+    source $setup_file
+  done
+
+  cd $DOTFILES_ROOT
+}
+
 create_symlinks
+run_setups
+
+success 'All done!'
