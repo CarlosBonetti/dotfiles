@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+link Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings
+link Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
