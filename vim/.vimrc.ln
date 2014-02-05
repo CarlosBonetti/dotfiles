@@ -1,0 +1,29 @@
+" Global options
+set encoding=utf-8 nobomb
+set autoindent
+set number
+set title
+
+" Spacing and tabbing
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Highlighting
+syntax on
+set hlsearch
+set incsearch " Highlight dynamically as pattern is typed
+
+" Ignore case of searches
+set ignorecase
+
+" Enable mouse in all modes
+set mouse=a
+
+" Set sounds errors to off
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
