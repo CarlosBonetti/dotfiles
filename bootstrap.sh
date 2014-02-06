@@ -39,7 +39,7 @@ link() {
     return
   fi
 
-  dirname=`dirname "$dest" -z`
+  dirname=`dirname "$dest"`
   if [ ! -d "$dirname" ]; then
     warning "Directory $dirname does not exist"
     ask "What do you want to do? [s]kip, [c]reate dir"
