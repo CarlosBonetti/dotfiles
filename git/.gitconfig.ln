@@ -2,6 +2,9 @@
   name = Carlos Bonetti
   email = carlosb_bc@hotmail.com
 
+[core]
+  editor = vim
+
 [color]
   ui = auto
   branch = auto
