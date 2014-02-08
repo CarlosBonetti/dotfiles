@@ -7,8 +7,25 @@ HISTFILESIZE=2000      # maximum number of lines in history file
 # Update the values of LINES and COLUMNS automatically after resizing the window
 shopt -s checkwinsize
 
-#PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-PS1='\u@\h:\w\$ '
+# Minimal random-colored prompt theme
+prompt_theme() {
+  local RESET="\e[0m"
+  local RED="\[\033[0;31m\]"
+  local GREEN="\[\033[0;32m\]"
+  local YELLOW="\[\033[0;33m\]"
+  local BLUE="\[\033[0;34m\]"
+  local CYAN="\[\033[0;36m\]"
+
+  COLORS=($RED $GREEN $YELLOW $BLUE $CYAN)
+
+  CUR_COLOR_INDEX=$RANDOM
+  let "CUR_COLOR_INDEX %= ${#COLORS[@]}"
+  CUR_COLOR=${COLORS[$CUR_COLOR_INDEX]}
+
+  PS1="\u${CUR_COLOR}:${RESET}\w${CUR_COLOR}\$${RESET} "
+}
+
+prompt_theme
 
 # Loading aliases
 if [ -f ~/.bash_aliases ]; then
