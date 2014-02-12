@@ -2,9 +2,11 @@
 
 Just a bunch of configuration files and scripts to install them on my `~/`, so I can feel home on every computer.
 
-## Bootstrapping
+## Structure
 
-Files are grouped in "topics" (e.g. git, javascript, zsh etc). Each topic contains the respective configuration files.
+Files are grouped in "topics" (e.g. git, javascript, bash etc). Each topic is just a folder that contains the respective configuration files.
+
+## Bootstrapping
 
 What `bootstrap.sh` does:
 
