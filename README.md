@@ -8,7 +8,8 @@ Files are grouped in "topics" (e.g. git, javascript, zsh etc). Each topic contai
 
 What `bootstrap.sh` does:
 
-* Creates a symbolic link of every `*.ln` file to `~/` (removing the .ln extension).
+* Creates a symbolic link of every `*.ln` file to `~/` (removing the .ln extension)
+* Creates a symbolic link of every `*.bin` file to `~/bin/` (removing the .bin extension)
 * Executes every `*.setup` file
 
 ## Inspiration
