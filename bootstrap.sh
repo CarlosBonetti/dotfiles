@@ -101,6 +101,18 @@ create_symlinks() {
   done
 }
 
+# Creates a symbolic link of every file inside `dotfiles/bin` to `~/bin/`
+link_bin_files() {
+  echo 'Linking *.bin files...'
+
+  for src in `find $DOTFILES_ROOT -name *.bin`; do
+    basename=`basename ${src} .bin`
+    dest="$HOME/bin/${basename}"
+
+    link $src $dest
+  done
+}
+
 # Executes every *.setup file in the dotfiles structure.
 #   The current path is changed to the .setup path that is being executed
 run_setups() {
@@ -116,6 +128,7 @@ run_setups() {
 }
 
 create_symlinks
+link_bin_files
 run_setups
 
 success 'All done!'
