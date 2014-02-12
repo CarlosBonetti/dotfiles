@@ -93,9 +93,6 @@ link() {
 create_symlinks() {
   echo 'Creating symbolic links...'
 
-  overwrite_all=false
-  skip_all=false
-
   for source in `find $DOTFILES_ROOT -name *.ln`; do
     basename=`basename ${source} .ln`
     dest="$HOME/${basename}"
