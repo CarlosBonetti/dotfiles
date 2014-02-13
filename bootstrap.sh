@@ -25,6 +25,11 @@ fail() {
   exit
 }
 
+header() {
+  echo ''
+  printf "\033[00;4m$1\033[0m\n"
+}
+
 # Creates a symbolic link between $1 and $2, asking for what to do if destiny already exists
 #   $1 -> source, $2 -> destiny
 #   Paths must be absolute
@@ -91,7 +96,7 @@ link() {
 }
 
 create_symlinks() {
-  echo 'Creating symbolic links...'
+  header 'Linking *.ln files to ~/'
 
   for source in `find $DOTFILES_ROOT -name *.ln`; do
     basename=`basename ${source} .ln`
@@ -103,7 +108,7 @@ create_symlinks() {
 
 # Creates a symbolic link of every file inside `dotfiles/bin` to `~/bin/`
 link_bin_files() {
-  echo 'Linking *.bin files...'
+  header 'Linking *.bin files to ~/bin/'
 
   for src in `find $DOTFILES_ROOT -name *.bin`; do
     basename=`basename ${src} .bin`
@@ -116,7 +121,7 @@ link_bin_files() {
 # Executes every *.setup file in the dotfiles structure.
 #   The current path is changed to the .setup path that is being executed
 run_setups() {
-  echo 'Running setup files...'
+  header 'Running *.setup files'
 
   for setup_file in `find $DOTFILES_ROOT -name *.setup`; do
     cd `dirname $setup_file`
