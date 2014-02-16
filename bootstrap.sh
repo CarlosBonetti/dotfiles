@@ -30,6 +30,11 @@ header() {
   printf "\033[00;4m$1\033[0m\n"
 }
 
+# (try to) create a symbolic link between $1 and $2, exiting script if fails
+_slink() {
+  ln -s "$1" "$2" || { fail "Something went wrong"; exit; }
+}
+
 # Creates a symbolic link between $1 and $2, asking for what to do if:
 #   - destiny already exists (overwrite or skip)
 #   - destiny's dirname does not exist (create dir or skip)
@@ -84,13 +89,13 @@ link() {
     fi
 
     if [ "$skip" == "false" ] && [ "$SKIP_ALL" == "false" ]; then
-      ln -s "$src" "$dest" || { fail "Something went wrong"; exit; }
+      _slink "$src" "$dest"
       success "(overwrite) Created symbolic link ${dest} -> ${src}"
     else
       success "Skipped $src"
     fi
   else
-    ln -s "$src" "$dest" || { fail "Something went wrong"; exit; }
+    _slink "$src" "$dest"
     success "Created symbolic link ${dest} -> ${src}"
   fi
 }
