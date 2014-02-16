@@ -30,9 +30,9 @@ header() {
   printf "\033[00;4m$1\033[0m\n"
 }
 
-# Creates a symbolic link between $1 and $2, asking for what to do if destiny already exists
-#   $1 -> source, $2 -> destiny
-#   Paths must be absolute
+# Creates a symbolic link between $1 and $2, asking for what to do if:
+#   - destiny already exists (overwrite or skip)
+#   - destiny's dirname does not exist (create dir or skip)
 link() {
   src=`readlink -f "$1"`
   dest=$2
@@ -95,6 +95,7 @@ link() {
   fi
 }
 
+# Creates a symbolic link of every `*.ln` file in `~/`
 create_symlinks() {
   header 'Linking *.ln files to ~/'
 
@@ -106,7 +107,7 @@ create_symlinks() {
   done
 }
 
-# Creates a symbolic link of every file inside `dotfiles/bin` to `~/bin/`
+# Creates a symbolic link of every `*.bin` file in `~/bin/`
 link_bin_files() {
   header 'Linking *.bin files to ~/bin/'
 
@@ -118,7 +119,7 @@ link_bin_files() {
   done
 }
 
-# Executes every *.setup file in the dotfiles structure.
+# Executes every `*.setup` file
 #   The current path is changed to the .setup path that is being executed
 run_setups() {
   header 'Running *.setup files'
