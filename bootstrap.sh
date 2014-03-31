@@ -15,6 +15,10 @@ warning() {
   printf "\r\033[2K  [ \033[00;33m!!\033[0m ] \033[00;33m$1\033[0m\n"
 }
 
+info() {
+  printf "\r\033[2K  [ \033[00;34m..\033[0m ] \033[00;34m$1\033[0m\n"
+}
+
 ask() {
   printf "\r  [ \033[0;34m??\033[0m ] $1 "
 }
@@ -28,6 +32,11 @@ fail() {
 header() {
   echo ''
   printf "\033[00;4m$1\033[0m\n"
+}
+
+subheader() {
+  echo ''
+  printf "\r  \033[00;1m$1\033[0m\n"
 }
 
 # (try to) create a symbolic link between $1 and $2, exiting script if fails
@@ -131,7 +140,7 @@ run_setups() {
 
   for setup_file in `find $DOTFILES_ROOT -name *.setup`; do
     cd `dirname $setup_file`
-    success "Running: ${setup_file}"
+    subheader "Running ${setup_file}"
     source $setup_file
   done
 
