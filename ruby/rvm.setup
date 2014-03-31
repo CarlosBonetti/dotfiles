@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# This script checks if RVM is present. If not, ask if the user wants to install it
+
+info 'Checking RVM installation...'
+
+if [ ! -s "$HOME/.rvm/scripts/rvm" ]; then
+  ask 'RVM not found. Do you want to install it? [y/N]'
+  read -n 1 action
+  if [ "$action" == "y" ] || [ "$action" == "Y" ]; then
+    info "Installing RVM stable..."
+    curl -sSL https://get.rvm.io | bash -s stable --ignore-dotfiles
+    success "RVM installed. Restart your console to load RVM scripts"
+  else
+    success "Skipped RVM installation"
+  fi
+
+else
+  success "RVM already installed"
+fi
