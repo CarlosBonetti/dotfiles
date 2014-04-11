@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+info "Linking pep8 file ~/.config/pep8"
+link pep8 ~/.config/pep8
