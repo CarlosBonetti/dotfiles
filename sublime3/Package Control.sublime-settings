@@ -2,6 +2,7 @@
 	"installed_packages":
 	[
 		"GitGutter",
-		"Markdown Preview"
+		"Markdown Preview",
+		"Python Checker"
 	]
 }
