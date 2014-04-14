@@ -2,3 +2,6 @@
 
 info "Linking pep8 file ~/.config/pep8"
 link pep8 ~/.config/pep8
+
+info "Linking virtualenv.ini to ~/.virtualenv/virtualenv.ini"
+link virtualenv.ini ~/.virtualenv/virtualenv.ini
