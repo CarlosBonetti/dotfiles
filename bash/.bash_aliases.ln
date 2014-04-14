@@ -15,3 +15,5 @@ alias egrep='egrep --color=auto -i'
 
 # return the external ip
 alias ipext='curl -s http://checkip.dyndns.org/ | grep -o '[0-9][0-9]*.[0-9][0-9]*.[0-9][0-9]*.[0-9]*''
+
+alias subliminal='subliminal $1 -l en -s -f'
