@@ -6,13 +6,17 @@ Just a bunch of configuration files and scripts to install them on my `~/`, so I
 
 Files are grouped in "topics" (e.g. git, javascript, bash etc). Each topic is just a folder that contains the respective configuration files.
 
-## Bootstrapping
+## Bootstrapping and autoloading
 
 What `bootstrap.sh` does:
 
 * Creates a symbolic link of every `*.ln` file to `~/` (removing the .ln extension)
 * Creates a symbolic link of every `*.bin` file to `~/bin/` (removing the .bin extension)
 * Executes every `*.setup` file
+
+What `.bashrc` does:
+
+* Executes every `*.load` file, so they are loaded in your environment
 
 ## Inspiration
 
