@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Custom style for bash prompt
+
+# Get current branch and dirty status for git repositories
+# Based on http://www.intridea.com/blog/2009/2/2/git-status-in-your-prompt
+parse_git_dirty() {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+parse_git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+COLOR_RESET="\[\033[0m\]"
+COLOR_RED="\[\033[0;31m\]"
+COLOR_GREEN="\[\033[0;32m\]"
+COLOR_YELLOW="\[\033[0;33m\]"
+COLOR_BLUE="\[\033[0;34m\]"
+COLOR_CYAN="\[\033[0;36m\]"
+
+# Minimal random-colored prompt theme
+modify_current_color() {
+  local COLORS=($COLOR_RED $COLOR_GREEN $COLOR_YELLOW $COLOR_BLUE $COLOR_CYAN)
+  local CUR_COLOR_INDEX=$RANDOM
+  let "CUR_COLOR_INDEX %= ${#COLORS[@]}"
+  export COLOR_CURRENT=${COLORS[$CUR_COLOR_INDEX]}
+}
+
+modify_current_color
+
+export_prompt_suffix() {
+  export PS1="\u${COLOR_CURRENT}:${COLOR_RESET}\w${COLOR_CURRENT}$(parse_git_branch) \$${COLOR_RESET} "
+}
+
+export PROMPT_COMMAND="export_prompt_suffix; $PROMPT_COMMAND"
