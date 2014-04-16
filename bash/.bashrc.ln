@@ -51,9 +51,6 @@ fi
 # make less more friendly for non-text input files
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Z
-[ -x /usr/bin/z ] && . /usr/bin/z
-
 # Get the home of dotfiles by following the .bashrc link
 export DOTFILES_HOME=$( readlink -f "$( dirname $( readlink -f ${BASH_SOURCE[0]}))/..")
 

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Initializes Z script, if found
+# https://github.com/rupa/z
+
+[ -x /usr/bin/z ] && . /usr/bin/z
