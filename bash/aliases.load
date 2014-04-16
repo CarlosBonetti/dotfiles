@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ls aliases
 alias ls='ls --color=auto'
 alias ll='ls -alF'
