@@ -41,7 +41,7 @@ subheader() {
 
 # (try to) create a symbolic link between $1 and $2, exiting script if fails
 _slink() {
-  ln -s "$1" "$2" || { fail "Something went wrong"; exit; }
+  ln -sf "$1" "$2" || { fail "Something went wrong"; exit; }
 }
 
 # Creates a symbolic link between $1 and $2, asking for what to do if:
@@ -73,7 +73,7 @@ link() {
     fi
   fi
 
-  if [ -f "$dest" ] || [ -d "$dest" ]; then
+  if [ -a "$dest" ] || [ -d "$dest" ]; then
     if [ "$OVERWRITE_ALL" == "false" ] && [ "$SKIP_ALL" == "false" ]; then
       warning "File already exists: ${dest}"
       ask "What do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all:"
