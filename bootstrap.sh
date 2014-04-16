@@ -2,7 +2,7 @@
 
 # Based on https://github.com/holman/dotfiles/blob/master/script/bootstrap
 
-DOTFILES_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export DOTFILES_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 OVERWRITE_ALL=false
 SKIP_ALL=false
@@ -113,7 +113,7 @@ link() {
 create_symlinks() {
   header 'Linking *.ln files to ~/'
 
-  for source in `find $DOTFILES_ROOT -name *.ln`; do
+  for source in `find $DOTFILES_HOME -name *.ln`; do
     basename=`basename ${source} .ln`
     dest="$HOME/${basename}"
 
@@ -125,7 +125,7 @@ create_symlinks() {
 link_bin_files() {
   header 'Linking *.bin files to ~/bin/'
 
-  for src in `find $DOTFILES_ROOT -name *.bin`; do
+  for src in `find $DOTFILES_HOME -name *.bin`; do
     basename=`basename ${src} .bin`
     dest="$HOME/bin/${basename}"
 
@@ -138,13 +138,13 @@ link_bin_files() {
 run_setups() {
   header 'Running *.setup files'
 
-  for setup_file in `find $DOTFILES_ROOT -name *.setup`; do
+  for setup_file in `find $DOTFILES_HOME -name *.setup`; do
     cd `dirname $setup_file`
     subheader "Running ${setup_file}"
     source $setup_file
   done
 
-  cd $DOTFILES_ROOT
+  cd $DOTFILES_HOME
 }
 
 create_symlinks
