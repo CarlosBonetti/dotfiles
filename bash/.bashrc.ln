@@ -54,15 +54,6 @@ fi
 # Z
 [ -x /usr/bin/z ] && . /usr/bin/z
 
-# RVM
-if [ -s "$HOME/.rvm/scripts/rvm" ]; then
-  # Load RVM into a shell session *as a function*
-  source "$HOME/.rvm/scripts/rvm"
-
-  # Add RVM to PATH for scripting
-  PATH=$PATH:$HOME/.rvm/bin
-fi
-
 # Get the home of dotfiles by following the .bashrc link
 export DOTFILES_HOME=$( readlink -f "$( dirname $( readlink -f ${BASH_SOURCE[0]}))/..")
 
