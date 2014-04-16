@@ -62,3 +62,10 @@ if [ -s "$HOME/.rvm/scripts/rvm" ]; then
   # Add RVM to PATH for scripting
   PATH=$PATH:$HOME/.rvm/bin
 fi
+
+export DOTFILES_HOME=~/dotfiles
+
+# Executes every `*.load` file inside the dotfiles structure
+for file in `find $DOTFILES_HOME -name *.load`; do
+  source $file
+done
