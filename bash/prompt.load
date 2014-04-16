@@ -31,6 +31,11 @@ modify_current_color
 
 export_prompt_suffix() {
   export PS1="\u${COLOR_CURRENT}:${COLOR_RESET}\w${COLOR_CURRENT}$(parse_git_branch) \$${COLOR_RESET} "
+
+  # If python's virtualenv is active, show the current name
+  if [[ $VIRTUAL_ENV != "" ]]; then
+    export PS1="${COLOR_CURRENT}(${VIRTUAL_ENV##*/})${COLOR_RESET}$PS1"
+  fi
 }
 
 export PROMPT_COMMAND="export_prompt_suffix; $PROMPT_COMMAND"
