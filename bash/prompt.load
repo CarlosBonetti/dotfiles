@@ -17,11 +17,12 @@ COLOR_RED="\[\033[0;31m\]"
 COLOR_GREEN="\[\033[0;32m\]"
 COLOR_YELLOW="\[\033[0;33m\]"
 COLOR_BLUE="\[\033[0;34m\]"
+COLOR_PURPLE="\[\033[0;35m\]"
 COLOR_CYAN="\[\033[0;36m\]"
 
 # Minimal random-colored prompt theme
 modify_current_color() {
-  local COLORS=($COLOR_RED $COLOR_GREEN $COLOR_YELLOW $COLOR_BLUE $COLOR_CYAN)
+  local COLORS=($COLOR_RED $COLOR_GREEN $COLOR_YELLOW $COLOR_BLUE $COLOR_PURPLE $COLOR_CYAN)
   local CUR_COLOR_INDEX=$RANDOM
   let "CUR_COLOR_INDEX %= ${#COLORS[@]}"
   export COLOR_CURRENT=${COLORS[$CUR_COLOR_INDEX]}
@@ -30,7 +31,7 @@ modify_current_color() {
 modify_current_color
 
 export_prompt_suffix() {
-  export PS1="\u${COLOR_CURRENT}:${COLOR_RESET}\w${COLOR_CURRENT}$(parse_git_branch) \$${COLOR_RESET} "
+  export PS1="\u${COLOR_CURRENT}:${COLOR_RESET}\w${COLOR_CURRENT}$(parse_git_branch)\$${COLOR_RESET} "
 
   # If python's virtualenv is active, show the current name
   if [[ $VIRTUAL_ENV != "" ]]; then
