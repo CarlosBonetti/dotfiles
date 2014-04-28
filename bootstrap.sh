@@ -113,11 +113,11 @@ link() {
 create_symlinks() {
   header 'Linking *.ln files to ~/'
 
-  for source in $(find $DOTFILES_HOME -name *.ln); do
-    basename=$(basename ${source} .ln)
-    dest="$HOME/${basename}"
+  for source in $(find "$DOTFILES_HOME" -name *.ln); do
+    basename=$(basename "$source" .ln)
+    dest="$HOME/$basename"
 
-    link $source $dest
+    link "$source" "$dest"
   done
 }
 
@@ -125,11 +125,11 @@ create_symlinks() {
 link_bin_files() {
   header 'Linking *.bin files to ~/bin/'
 
-  for src in $(find $DOTFILES_HOME -name *.bin); do
-    basename=$(basename ${src} .bin)
-    dest="$HOME/bin/${basename}"
+  for src in $(find "$DOTFILES_HOME" -name *.bin); do
+    basename=$(basename "$src" .bin)
+    dest="$HOME/bin/$basename"
 
-    link $src $dest
+    link "$src" "$dest"
   done
 }
 
@@ -138,13 +138,13 @@ link_bin_files() {
 run_setups() {
   header 'Running *.setup files'
 
-  for setup_file in $(find $DOTFILES_HOME -name *.setup); do
-    cd $(dirname $setup_file)
-    subheader "Running ${setup_file}"
-    source $setup_file
+  for setup_file in $(find "$DOTFILES_HOME" -name *.setup); do
+    cd "$(dirname "$setup_file")"
+    subheader "Running $setup_file"
+    source "$setup_file"
   done
 
-  cd $DOTFILES_HOME
+  cd "$DOTFILES_HOME"
 }
 
 create_symlinks
