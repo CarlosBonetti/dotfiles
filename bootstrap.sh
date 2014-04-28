@@ -48,7 +48,7 @@ _slink() {
 #   - destiny already exists (overwrite or skip)
 #   - destiny's dirname does not exist (create dir or skip)
 link() {
-  src=`readlink -f "$1"`
+  src=$(readlink -f "$1")
   dest=$2
   skip=false
   overwrite=false
@@ -58,7 +58,7 @@ link() {
     return
   fi
 
-  dirname=`dirname "$dest"`
+  dirname=$(dirname "$dest")
   if [ ! -d "$dirname" ]; then
     warning "Directory $dirname does not exist"
     ask "What do you want to do? [s]kip, [c]reate dir"
@@ -113,8 +113,8 @@ link() {
 create_symlinks() {
   header 'Linking *.ln files to ~/'
 
-  for source in `find $DOTFILES_HOME -name *.ln`; do
-    basename=`basename ${source} .ln`
+  for source in $(find $DOTFILES_HOME -name *.ln); do
+    basename=$(basename ${source} .ln)
     dest="$HOME/${basename}"
 
     link $source $dest
@@ -125,8 +125,8 @@ create_symlinks() {
 link_bin_files() {
   header 'Linking *.bin files to ~/bin/'
 
-  for src in `find $DOTFILES_HOME -name *.bin`; do
-    basename=`basename ${src} .bin`
+  for src in $(find $DOTFILES_HOME -name *.bin); do
+    basename=$(basename ${src} .bin)
     dest="$HOME/bin/${basename}"
 
     link $src $dest
@@ -138,8 +138,8 @@ link_bin_files() {
 run_setups() {
   header 'Running *.setup files'
 
-  for setup_file in `find $DOTFILES_HOME -name *.setup`; do
-    cd `dirname $setup_file`
+  for setup_file in $(find $DOTFILES_HOME -name *.setup); do
+    cd $(dirname $setup_file)
     subheader "Running ${setup_file}"
     source $setup_file
   done
