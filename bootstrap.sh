@@ -8,35 +8,35 @@ OVERWRITE_ALL=false
 SKIP_ALL=false
 
 success() {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
 }
 
 warning() {
-  printf "\r\033[2K  [ \033[00;33m!!\033[0m ] \033[00;33m$1\033[0m\n"
+  printf "\r\033[2K  [ \033[00;33m!!\033[0m ] \033[00;33m%s\033[0m\n" "$1"
 }
 
 info() {
-  printf "\r\033[2K  [ \033[00;34m..\033[0m ] \033[00;34m$1\033[0m\n"
+  printf "\r\033[2K  [ \033[00;34m..\033[0m ] \033[00;34m%s\033[0m\n" "$1"
 }
 
 ask() {
-  printf "\r  [ \033[0;34m??\033[0m ] $1 "
+  printf "\r  [ \033[0;34m??\033[0m ] %s " "$1"
 }
 
 fail() {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
   echo ''
   exit
 }
 
 header() {
   echo ''
-  printf "\033[00;4m$1\033[0m\n"
+  printf "\033[00;4m%s\033[0m\n" "$1"
 }
 
 subheader() {
   echo ''
-  printf "\r  \033[00;1m$1\033[0m\n"
+  printf "\r  \033[00;1m%s\033[0m\n" "$1"
 }
 
 # (try to) create a symbolic link between $1 and $2, exiting script if fails
