@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Install composer PHP package manager, if not installed
+# https://getcomposer.org
+# The file is installed inside `~/bin/` folder
+
+info 'Checking if composer is installed...'
+
+if [ ! -s "$HOME/bin/composer" ]; then
+  ask 'Composer not found. Do you want to install it? [y/N]'
+  read -n 1 action
+  if [ "$action" == "y" ] || [ "$action" == "Y" ]; then
+    info 'Installing composer...'
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=$HOME/bin/
+    mv $HOME/bin/composer.phar $HOME/bin/composer
+    success 'Composer installed. Use it: composer [..OPTIONS]'
+  fi
+else
+  success 'Composer already installed'
+fi
