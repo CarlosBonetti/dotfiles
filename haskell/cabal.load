@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Check if cabal is installed on system, if it is, load the `.cabal/bin`
+# folder to the environment
+
+if [ -d "$HOME/.cabal/bin" ] ; then
+  export PATH=$HOME/.cabal/bin:$PATH
+fi
