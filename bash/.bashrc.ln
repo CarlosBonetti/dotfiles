@@ -38,18 +38,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Includes user's private bin in PATH if it exists
-if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
-fi
-
 # make less more friendly for non-text input files
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Get the home of dotfiles by following the .bashrc link
+# Get the home of dotfiles by following the `.bashrc` link
 export DOTFILES_HOME=$( readlink -f "$( dirname $( readlink -f ${BASH_SOURCE[0]}))/..")
 
-# Executes every `*.load` file inside the dotfiles structure
-for file in `find $DOTFILES_HOME -name *.load`; do
-  source $file
-done
+# Execute the dotfiles load script
+. "$DOTFILES_HOME"/load.sh

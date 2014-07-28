@@ -28,7 +28,7 @@ modify_current_color() {
   export COLOR_CURRENT=${COLORS[$CUR_COLOR_INDEX]}
 }
 
-modify_current_color
+modify_current_color()
 
 export_prompt_suffix() {
   export PS1="\u${COLOR_CURRENT}:${COLOR_RESET}\w${COLOR_CURRENT}$(parse_git_branch)\$${COLOR_RESET} "
