@@ -14,9 +14,11 @@ What `bootstrap.sh` does:
 * Creates a symbolic link of every `*.bin` file to `~/bin/` (removing the .bin extension)
 * Executes every `*.setup` file
 
-What `.bashrc` does:
+What `load.sh` does:
 
 * Executes every `*.load` file, so they are loaded in your environment
+
+The `load.sh` file need to be executed every time the shell is started, so load it on your `rc` file (`.bashrc`, `.zshrc`, ...).
 
 ## Inspiration
 
