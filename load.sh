@@ -10,3 +10,8 @@ fi
 for file in $(find "$DOTFILES_HOME" -name "*.load"); do
   source "$file"
 done
+
+# Add heroku toolbelt to the environment
+if [ -d "/usr/local/heroku/bin" ] ; then
+  PATH="/usr/local/heroku/bin:$PATH"
+fi
