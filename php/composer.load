@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Check if composer is installed on system, if it is, load the vendor/bin
+# folder to the enviroment
+
+if [ -d "$HOME/.composer/vendor/bin" ] ; then
+  export PATH=$HOME/.composer/vendor/bin:$PATH
+fi
