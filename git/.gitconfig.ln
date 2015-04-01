@@ -2,6 +2,10 @@
   name = Carlos Bonetti
   email = carlosb_bc@hotmail.com
 
+[credential]
+  # Set git to store my login information for 15 minutes
+  helper = cache --timeout=3600
+
 [core]
   editor = vim
 
