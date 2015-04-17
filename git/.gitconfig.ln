@@ -22,6 +22,7 @@
 
   co = checkout -b
   c  = checkout
+  s  = status
 
 [push]
   default = current
