@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-info "Linking setup config files to ~/.config/sublime-text-3"
-link Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings
-link Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
