@@ -23,6 +23,7 @@
   co = checkout -b
   c  = checkout
   s  = status
+  bv = branch -v
 
 [push]
   default = current
