@@ -24,6 +24,8 @@
   c  = checkout
   s  = status
   bv = branch -v
+  bm = branch --merged
+  bd = branch -d
 
 [push]
   default = current
