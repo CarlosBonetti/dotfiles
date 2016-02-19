@@ -26,6 +26,7 @@
   bv = branch -v
   bm = branch --merged
   bd = branch -d
+  dsf = "!git diff --color $@ | diff-so-fancy | less" # https://github.com/so-fancy/diff-so-fancy
 
 [push]
   default = current
