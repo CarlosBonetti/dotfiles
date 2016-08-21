@@ -15,3 +15,6 @@ done
 if [ -d "/usr/local/heroku/bin" ] ; then
   PATH="/usr/local/heroku/bin:$PATH"
 fi
+
+# Autojump
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
